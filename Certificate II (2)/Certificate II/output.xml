@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.7.5 on win32)" generated="20211014 15:45:41.019" rpa="true" schemaversion="2">
+<suite id="s1" name="Tasks" source="c:\Users\luuka\Certificate II (2)\Certificate II\tasks.robot">
+<test id="s1-t1" name="Order robots from RobotSpareBin Industries Inc">
+<kw name="Starting dialog">
+<var>${link}</var>
+<kw name="Add heading" library="RPA.Dialogs">
+<arg>Tell the order.csv file link</arg>
+<doc>Add a centered heading text element</doc>
+<status status="PASS" starttime="20211014 15:45:43.030" endtime="20211014 15:45:43.032"/>
+</kw>
+<kw name="Add text input" library="RPA.Dialogs">
+<arg>name</arg>
+<arg>label=order.csv liNK</arg>
+<tag>input</tag>
+<doc>Add a text input element</doc>
+<status status="PASS" starttime="20211014 15:45:43.033" endtime="20211014 15:45:43.035"/>
+</kw>
+<kw name="Run dialog" library="RPA.Dialogs">
+<var>${link}</var>
+<tag>dialog</tag>
+<doc>Create a dialog from all the defined elements and block
+until the user has handled it.</doc>
+<msg timestamp="20211014 15:45:43.037" level="INFO">Protecting keyword: RPA.Dialogs.Run dialog</msg>
+<msg timestamp="20211014 15:45:45.937" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20211014 15:45:43.036" endtime="20211014 15:45:45.935"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>The link is: ${link.name}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20211014 15:45:45.942" level="INFO">The link is: https://robotsparebinindustries.com/orders.csv</msg>
+<status status="PASS" starttime="20211014 15:45:45.938" endtime="20211014 15:45:45.942"/>
+</kw>
+<msg timestamp="20211014 15:45:45.946" level="INFO">${link} = https://robotsparebinindustries.com/orders.csv</msg>
+<status status="PASS" starttime="20211014 15:45:43.028" endtime="20211014 15:45:45.946"/>
+</kw>
+<kw name="Open the robot order website">
+<kw name="Get Secret" library="RPA.Robocorp.Vault">
+<var>${secret}</var>
+<arg>Order website URL</arg>
+<doc>Read a secret from the configured source, e.g. Robocorp Vault,
+and return it as a ``Secret`` object.</doc>
+<msg timestamp="20211014 15:45:45.951" level="INFO">Protecting keyword: RPA.Robocorp.Vault.Get Secret</msg>
+<msg timestamp="20211014 15:45:45.958" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="FAIL" starttime="20211014 15:45:45.950" endtime="20211014 15:45:45.957"/>
+</kw>
+<kw name="Open Chrome Browser" library="RPA.Browser.Selenium">
+<arg>${secret}[URL]</arg>
+<doc>Open Chrome browser. See ``Open Available Browser`` for
+descriptions of arguments.</doc>
+<status status="NOT RUN" starttime="20211014 15:45:45.960" endtime="20211014 15:45:45.960"/>
+</kw>
+<status status="FAIL" starttime="20211014 15:45:45.947" endtime="20211014 15:45:45.964"/>
+</kw>
+<kw name="Get orders">
+<var>${orders}</var>
+<arg>${link}</arg>
+<status status="NOT RUN" starttime="20211014 15:45:45.966" endtime="20211014 15:45:45.966"/>
+</kw>
+<for flavor="IN">
+<var>${row}</var>
+<value>@{orders}</value>
+<iter>
+<var name="${row}">${row}</var>
+<kw name="Log" library="BuiltIn">
+<arg>${row}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20211014 15:45:45.970" endtime="20211014 15:45:45.971"/>
+</kw>
+<kw name="Close modal">
+<status status="NOT RUN" starttime="20211014 15:45:45.972" endtime="20211014 15:45:45.973"/>
+</kw>
+<kw name="Fill the form">
+<arg>${row}</arg>
+<status status="NOT RUN" starttime="20211014 15:45:45.973" endtime="20211014 15:45:45.974"/>
+</kw>
+<kw name="Preview the robot">
+<status status="NOT RUN" starttime="20211014 15:45:45.975" endtime="20211014 15:45:45.976"/>
+</kw>
+<kw name="Submit the order">
+<status status="NOT RUN" starttime="20211014 15:45:45.976" endtime="20211014 15:45:45.977"/>
+</kw>
+<kw name="Store the receipt as a PDF file">
+<var>${pdf}</var>
+<arg>${row}[Order number]</arg>
+<status status="NOT RUN" starttime="20211014 15:45:45.978" endtime="20211014 15:45:45.979"/>
+</kw>
+<kw name="Take a screenshot of the robot">
+<var>${screenshot}</var>
+<arg>${row}[Order number]</arg>
+<status status="NOT RUN" starttime="20211014 15:45:45.980" endtime="20211014 15:45:45.980"/>
+</kw>
+<kw name="Embed the robot screenshot to the receipt PDF file">
+<arg>${screenshot}</arg>
+<arg>${pdf}</arg>
+<arg>${row}</arg>
+<status status="NOT RUN" starttime="20211014 15:45:45.981" endtime="20211014 15:45:45.982"/>
+</kw>
+<kw name="Go to order another robot">
+<status status="NOT RUN" starttime="20211014 15:45:45.983" endtime="20211014 15:45:45.984"/>
+</kw>
+<status status="NOT RUN" starttime="20211014 15:45:45.969" endtime="20211014 15:45:45.984"/>
+</iter>
+<status status="NOT RUN" starttime="20211014 15:45:45.967" endtime="20211014 15:45:45.985"/>
+</for>
+<kw name="Create a ZIP file of the receipts">
+<status status="NOT RUN" starttime="20211014 15:45:45.986" endtime="20211014 15:45:45.987"/>
+</kw>
+<kw name="Success dialog">
+<status status="NOT RUN" starttime="20211014 15:45:45.988" endtime="20211014 15:45:45.988"/>
+</kw>
+<status status="FAIL" starttime="20211014 15:45:43.024" endtime="20211014 15:45:45.990">KeyError: 'Undefined secret: Order website URL'</status>
+</test>
+<doc>Orders robots from RobotSpareBin Industries Inc.
+Saves the order HTML receipt as a PDF file.
+Saves the screenshot of the ordered robot.
+Embeds the screenshot of the robot to the PDF receipt.
+Creates ZIP archive of the receipts and the images.</doc>
+<status status="FAIL" starttime="20211014 15:45:41.025" endtime="20211014 15:45:45.993"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20211014 15:45:45.952" level="ERROR">Failed to load secrets file: [Errno 2] No such file or directory: 'vault.json'</msg>
+</errors>
+</robot>
